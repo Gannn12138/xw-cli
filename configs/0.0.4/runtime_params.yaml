@@ -1,0 +1,1049 @@
+version: '1.0'
+templates:
+- name: ascend-910b_qwen2.5-7b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - world_size=1
+  - tensor_parallel_size=1
+  - server_port=8000
+  - model_name=qwen2.5-7b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-910b_qwen2.5-7b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-7b-instruct
+- name: ascend-910b_qwen3-32b_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-910b_qwen3-32b_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b
+- name: ascend-910b_qwen3-8b_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-910b_qwen3-8b_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+- name: ascend-910b_minimax-m2.1-w4a8_vllm
+  envs:
+    VLLM_USE_V1: '0'
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=minimax-m2.1-w4a8
+  - extra_args=--quantization ascend --trust-remote-code --enable-chunked-prefill
+    --load-format safetensors --reasoning-parser minimax_m2 --tool-call-parser minimax_m2
+    --enable-auto-tool-choice --chat-template $MODEL_PATH/chat_template.jinja --trust-remote-code
+- name: ascend-910b_minimax-m2.5-w4a8_vllm
+  envs:
+    VLLM_USE_V1: '0'
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=minimax-m2.5-w4a8
+  - extra_args=--quantization ascend --trust-remote-code --enable-chunked-prefill
+    --load-format safetensors --reasoning-parser minimax_m2 --tool-call-parser minimax_m2
+    --enable-auto-tool-choice --trust-remote-code
+- name: ascend-910b_minimax-m2.5-w8a8_vllm
+  envs:
+    VLLM_USE_V1: '0'
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=minimax-m2.5-w8a8
+  - extra_args=--quantization ascend --trust-remote-code --enable-chunked-prefill
+    --load-format safetensors --reasoning-parser minimax_m2 --tool-call-parser minimax_m2
+    --enable-auto-tool-choice --trust-remote-code
+- name: ascend-910b_qwen3.5-35b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=6600
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3.5-35b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-122b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen3.5-122b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-27b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3.5-27b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-9b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-9b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-2b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-2b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-4b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-4b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-0.8b_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-0.8b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3.5-122b-w8a8_vllm
+  envs: null
+  params:
+  - gpu_memory_utilization=0.85
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3.5-122b-w8a8
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3 --quantization ascend --enable-expert-parallel
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:qwen3_5-arm64
+- name: ascend-910b_qwen3-235b-a22b-w4a8_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=40960
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen3-235b-a22b-w4a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_deepseek3.2-w4a8_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=deepseek3.2-w4a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser deepseek3.2
+- name: ascend-910b_qwen3-32b_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-910b_qwen3-8b_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-910b_qwen3-32b-w8a8_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b-w8a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_qwen3-30b-a3b-instruct-2507-w4a8_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-30b-a3b-instruct-2507-w4a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice
+- name: ascend-910b_qwen3-235b-a22b-w4a8_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=40960
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen3-235b-a22b-w4a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_qwen3-next-80b-a3b-instruct-w8a8_omni-infer
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-next-80b-a3b-instruct-w8a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_qwen3-next-80b-a3b-instruct-w8a8_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-next-80b-a3b-instruct-w8a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_qwen3-next-80b-a3b-instruct-w8a8_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen3-next-80b-a3b-instruct-w8a8
+- name: ascend-910b_qwen3-32b-w8a8_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b-w8a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_qwen3-32b-w8a8_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b-w8a8
+- name: ascend-910b_qwen3-30b-a3b-instruct-2507-w4a8_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-30b-a3b-instruct-2507-w4a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    hermes --reasoning-parser qwen3
+- name: ascend-910b_qwen3-30b-a3b-instruct-2507-w4a8_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-30b-a3b-instruct-2507-w4a8
+- name: ascend-910b_glm-4.5-w8a8_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=glm-4.5-w8a8
+  - extra_args=--quantization ascend --enable-auto-tool-choice --tool-call-parser
+    glm45 --reasoning-parser glm45
+- name: ascend-910b_qwen3-vl-30b-a3b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-vl-30b-a3b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-910b_qwen3-vl-30b-a3b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-vl-30b-a3b-instruct
+- name: ascend-910b_qwen2.5-14b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=2
+  - world_size=2
+  - server_port=8000
+  - model_name=qwen2.5-14b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-910b_qwen2.5-14b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=2
+  - world_size=2
+  - server_port=8000
+  - model_name=qwen2.5-14b-instruct
+- name: ascend-910b_qwen2.5-72b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen2.5-72b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-910b_qwen2.5-72b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen2.5-72b-instruct
+- name: ascend-910b_qwq-32b_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwq-32b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    deepseek_r1
+- name: ascend-910b_qwq-32b_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwq-32b
+- name: ascend-910b_qwen2.5-vl-7b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-vl-7b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-910b_qwen2.5-vl-7b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-vl-7b-instruct
+- name: ascend-910b_qwen3-vl-8b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-vl-8b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-910b_qwen3-vl-8b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-vl-8b-instruct
+- name: ascend-910b_deepseek-r1-distill-qwen-7b_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-7b
+  - extra_args=--reasoning-parser deepseek_r1
+- name: ascend-910b_deepseek-r1-distill-qwen-7b_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-7b
+- name: ascend-910b_deepseek-r1-distill-llama-70b_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=deepseek-r1-distill-llama-70b
+  - extra_args=--reasoning-parser deepseek_r1
+- name: ascend-910b_deepseek-r1-distill-llama-70b_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=deepseek-r1-distill-llama-70b
+- name: ascend-910b_deepseek-r1-distill-qwen-32b_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-32b
+  - extra_args=--reasoning-parser deepseek_r1
+- name: ascend-910b_deepseek-r1-distill-qwen-32b_mindie
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-32b
+- name: ascend-910b_glm-5_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=6000
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=glm-5
+  - extra_args=
+  - image=harbor.tsingmao.com/xw-cli/vllm-ascend:glm5-arm64
+- name: ascend-310p_qwen3-32b_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=8192
+  - world_size=4
+  - server_port=8000
+  - custom_args=" --xxx --yyy"
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-310p_qwen3-32b_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=8192
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+- name: ascend-310p_glm-ocr_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=66000
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+- name: ascend-310p_qwen3-32b_mlguider
+  params:
+  - pipeline_parallel=1
+  - tensor_parallel=4
+  - expert_parallel=1
+  - world_size=4
+  - api_port=8000
+  - mi_username=tsingmao-xuanwu
+  - mi_secret=tsingmao2026
+- name: ascend-310p_qwen3-8b_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-310p_qwen3-8b_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+- name: ascend-310p_qwen3-8b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+- name: ascend-310p_qwen3-vl-30b-a3b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-vl-30b-a3b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-310p_qwen3-vl-30b-a3b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-vl-30b-a3b-instruct
+- name: ascend-310p_qwen2.5-14b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=2
+  - world_size=2
+  - server_port=8000
+  - model_name=qwen2.5-14b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-310p_qwen2.5-14b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=2
+  - world_size=2
+  - server_port=8000
+  - model_name=qwen2.5-14b-instruct
+- name: ascend-310p_qwen2.5-14b-instruct_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=2
+  - world_size=2
+  - server_port=8000
+  - model_name=qwen2.5-14b-instruct
+- name: ascend-310p_qwen2.5-72b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen2.5-72b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-310p_qwen2.5-72b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen2.5-72b-instruct
+- name: ascend-310p_qwen2.5-72b-instruct_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen2.5-72b-instruct
+- name: ascend-310p_qwq-32b_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwq-32b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    deepseek_r1
+- name: ascend-310p_qwq-32b_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwq-32b
+- name: ascend-310p_qwq-32b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwq-32b
+- name: ascend-310p_qwen2.5-vl-7b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-vl-7b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-310p_qwen2.5-vl-7b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-vl-7b-instruct
+- name: ascend-310p_qwen3-vl-8b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-vl-8b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: ascend-310p_qwen3-vl-8b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-vl-8b-instruct
+- name: ascend-310p_deepseek-r1-distill-qwen-7b_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-7b
+  - extra_args=--reasoning-parser deepseek_r1
+- name: ascend-310p_deepseek-r1-distill-qwen-7b_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-7b
+- name: ascend-310p_deepseek-r1-distill-qwen-7b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-7b
+- name: ascend-310p_deepseek-r1-distill-llama-70b_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=deepseek-r1-distill-llama-70b
+  - extra_args=--reasoning-parser deepseek_r1
+- name: ascend-310p_deepseek-r1-distill-llama-70b_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=deepseek-r1-distill-llama-70b
+- name: ascend-310p_deepseek-r1-distill-llama-70b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-llama-70b
+- name: ascend-310p_deepseek-r1-distill-qwen-32b_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-32b
+  - extra_args=--reasoning-parser deepseek_r1
+- name: ascend-310p_deepseek-r1-distill-qwen-32b_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-32b
+- name: ascend-310p_deepseek-r1-distill-qwen-32b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-32b
+- name: ascend-310p_qwen2.5-7b-instruct_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-7b-instruct
+- name: ascend-310p_qwen2.5-7b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-7b-instruct
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: ascend-310p_qwen2.5-7b-instruct_mindie
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-7b-instruct
+- name: ascend-310p_qwen3-coder-next_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - expert_parallel=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-coder-next
+- name: ascend-310p_qwen3.5-0.8b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-0.8b
+- name: ascend-310p_qwen3.5-2b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-2b
+- name: ascend-310p_qwen3.5-4b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-4b
+- name: ascend-310p_qwen3.5-9b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3.5-9b
+- name: ascend-310p_qwen3.5-27b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3.5-27b
+- name: ascend-310p_qwen3.5-35b_mlguider
+  params:
+  - gpu_memory_utilization=0.8
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - expert_parallel=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3.5-35b
+- name: metax-c550_glm-4.7-w8a8_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=8192
+  - tensor_parallel_size=8
+  - gpu_memory_utilization=0.9
+  - world_size=8
+  - server_port=8000
+  - model_name=glm-4.7-w8a8
+  - extra_args=--enable-auto-tool-choice --tool-call-parser glm47
+- name: metax-c550_qwen3-32b_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-32b
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_qwen3-8b_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-8b
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_qwen3-235b-a22b-w8a8_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=40960
+  - tensor_parallel_size=1
+  - gpu_memory_utilization=0.9
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen3-235b-a22b
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_deepseek-ocr_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-ocr
+  - gpu_memory_utilization=0.9
+- name: metax-c550_glm-4.5-w8a8_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=glm-4.5-w8a8
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser glm45 --reasoning-parser
+    glm45
+- name: metax-c550_qwen2.5-14b-instruct_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=2
+  - world_size=2
+  - server_port=8000
+  - model_name=qwen2.5-14b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: metax-c550_qwen2.5-72b-instruct_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen2.5-72b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: metax-c550_qwq-32b_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwq-32b
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    deepseek_r1
+- name: metax-c550_qwen2.5-vl-7b-instruct_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen2.5-vl-7b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
+- name: metax-c550_qwen3-vl-8b-instruct_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=qwen3-vl-8b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_deepseek-r1-distill-qwen-7b_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=1
+  - world_size=1
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-7b
+  - gpu_memory_utilization=0.9
+  - extra_args=--reasoning-parser deepseek_r1
+- name: metax-c550_deepseek-r1-distill-llama-70b_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=deepseek-r1-distill-llama-70b
+  - gpu_memory_utilization=0.9
+  - extra_args=--reasoning-parser deepseek_r1
+- name: metax-c550_deepseek-r1-distill-qwen-32b_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=32768
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=deepseek-r1-distill-qwen-32b
+  - gpu_memory_utilization=0.9
+  - extra_args=--reasoning-parser deepseek_r1
+- name: metax-c550_qwen3-30b-a3b-w8a8_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=4096
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-30b-a3b
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_qwen3-next-80b-a3b-instruct-w8a8_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=262144
+  - tensor_parallel_size=8
+  - world_size=8
+  - server_port=8000
+  - model_name=qwen3-next-80b-a3b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_qwen3-coder-30b-a3b-instruct_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=262144
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-coder-30b-a3b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser qwen3_xml
+- name: metax-c550_qwen3-vl-30b-a3b-instruct_vllm
+  params:
+  - vllm_use_v1=0
+  - max_model_len=262144
+  - tensor_parallel_size=4
+  - world_size=4
+  - server_port=8000
+  - model_name=qwen3-vl-30b-a3b-instruct
+  - gpu_memory_utilization=0.9
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser
+    qwen3
+- name: metax-c550_qwen2.5-7b-instruct_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - world_size=1
+  - tensor_parallel_size=1
+  - server_port=8000
+  - model_name=qwen2.5-7b-instruct
+- name: ascend-910b_deepseek3.2-w4a8_vllm
+  params:
+  - gpu_memory_utilization=0.9
+  - max_model_len=32768
+  - world_size=1
+  - tensor_parallel_size=1
+  - server_port=8000
+  - model_name=deepseek3.2-w4a8
+  - extra_args=--enable-auto-tool-choice --tool-call-parser hermes
