@@ -829,17 +829,17 @@ templates:
   params:
   - gpu_memory_utilization=0.8
   - max_model_len=32768
-  - tensor_parallel_size=4
-  - world_size=4
+  - tensor_parallel_size=2
+  - world_size=2
   - server_port=8000
   - model_name=qwen3.5-27b
 - name: ascend-310p_qwen3.5-35b_mlguider
   params:
   - gpu_memory_utilization=0.8
   - max_model_len=32768
-  - tensor_parallel_size=4
-  - expert_parallel=4
-  - world_size=4
+  - tensor_parallel_size=2
+  - expert_parallel=2
+  - world_size=2
   - server_port=8000
   - model_name=qwen3.5-35b
 - name: metax-c550_glm-4.7-w8a8_vllm
